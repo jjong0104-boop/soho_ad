@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사장마켓 - 매장 통신 통합 컨설팅</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-blue: #0056b3;
+            --accent-pink: #e91e63;
+            --bg-gray: #f8f9fa;
+        }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; display: flex; justify-content: center; padding: 20px; }
+        .form-container { background: white; width: 100%; max-width: 450px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background: var(--main-blue); color: white; padding: 30px 20px; text-align: center; }
+        .header h1 { font-size: 1.2rem; margin-top: 10px; line-height: 1.4; word-break: keep-all; }
+        .logo { width: 120px; filter: brightness(0) invert(1); } /* 로고가 어두운 색일 경우 대비용 */
+        
+        .step { display: none; padding: 25px; animation: fadeIn 0.5s; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .question { font-weight: bold; font-size: 1.1rem; margin-bottom: 20px; color: #333; }
+        .options-grid { display: grid; gap: 10px; }
+        
+        /* 버튼 및 입력창 스타일 */
+        input[type="radio"], input[type="checkbox"] { display: none; }
+        label.option-btn {
+            display: block; padding: 15px; border: 2px solid #ddd; border-radius: 10px;
+            text-align: center; cursor: pointer; transition: 0.3s; font-weight: 500;
+        }
+        input:checked + label.option-btn { border-color: var(--main-blue); background: #eef5ff; color: var(--main-blue); }
+        
+        input[type="text"], input[type="tel"] {
+            width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box;
+        }
+        
+        .next-btn {
+            width: 100%; background: var(--accent-pink); color: white; border: none; padding: 15px;
+            border-radius: 10px; font-size: 1.1rem; font-weight: bold; margin-top: 20px; cursor: pointer;
+        }
+        .desc { font-size: 0.85rem; color: #666; margin-top: 10px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <img src="logo.png" alt="사장마켓 로고" class="logo">
+        <h1>사장마켓에서 매장 인터넷+전화 가입하면<br>최대 사은품 증정!</h1>
+    </div>
+
+    <form id="sajangForm">
+        <div class="step active" id="step1">
+            <p class="question">질문 1. 매장 오픈 예정이신가요, 운영중이신가요?</p>
+            <div class="options-grid">
+                <input type="radio" name="status" id="op1" value="오픈 예정" onclick="nextStep(2)">
+                <label for="op1" class="option-btn">오픈 예정</label>
+                <input type="radio" name="status" id="op2" value="운영중" onclick="nextStep(2)">
+                <label for="op2" class="option-btn">운영중</label>
+            </div>
+        </div>
+
+        <div class="step" id="step2">
+            <p class="question">질문 2. 매장에 필요하신 상품을 모두 체크해 주세요! (복수 선택)</p>
+            <div class="options-grid">
+                <input type="checkbox" name="products" id="p1" value="포스기"><label for="p1" class="option-btn">포스기</label>
+                <input type="checkbox" name="products" id="p2" value="카드단말기"><label for="p2" class="option-btn">카드단말기(토스/네이버)</label>
+                <input type="checkbox" name="products" id="p3" value="CCTV"><label for="p3" class="option-btn">CCTV</label>
+                <input type="checkbox" name="products" id="p4" value="정수기"><label for="p4" class="option-btn">정수기</label>
+                <input type="checkbox" name="products" id="p5" value="테이블오더"><label for="p5" class="option-btn">테이블오더</label>
+            </div>
+            <button type="button" class="next-btn" onclick="nextStep(3)">다음 단계로</button>
+        </div>
+
+        <div class="step" id="step3">
+            <p class="question">질문 3. 연락처 정보 (필수)</p>
+            <input type="text" name="storeName" placeholder="상호명 (오픈 예정이면 '오픈 예정' 입력)" required>
+            <input type="text" name="userName" placeholder="성함" required>
+            <input type="tel" name="phone" placeholder="전화번호 (-없이 입력)" required>
+            <button type="button" class="next-btn" onclick="nextStep(4)">다음 단계로</button>
+        </div>
+
+        <div class="step" id="step4">
+            <p class="question">질문 4. 통화 가능한 시간대</p>
+            <div class="options-grid">
+                <input type="radio" name="callTime" id="t1" value="오전 09-12시"><label for="t1" class="option-btn">오전 09-12시</label>
+                <input type="radio" name="callTime" id="t2" value="오후 12-15시"><label for="t2" class="option-btn">오후 12-15시</label>
+                <input type="radio" name="callTime" id="t3" value="늦은 오후 15-19시"><label for="t3" class="option-btn">늦은 오후 15-19시</label>
+            </div>
+            <p class="question" style="margin-top:30px;">질문 5. 마케팅 활용 및 이용 동의 (선택)</p>
+            <div class="options-grid">
+                <input type="radio" name="marketing" id="m1" value="동의"><label for="m1" class="option-btn">동의합니다</label>
+                <input type="radio" name="marketing" id="m2" value="거부"><label for="m2" class="option-btn">동의하지 않습니다</label>
+            </div>
+            <button type="submit" class="next-btn" style="background: var(--main-blue);">신청하기</button>
+            <p class="desc">감사합니다. 담당 상담원이 빠른 시간 내에 연락 드리겠습니다.</p>
+        </div>
+    </form>
+</div>
+
+<script>
+    function nextStep(step) {
+        document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+        document.getElementById('step' + step).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; // 여기에 아까 복사한 URL 붙여넣기
+    const form = document.getElementById('sajangForm');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // 체크박스 다중 선택 처리
+        let products = [];
+        document.querySelectorAll('input[name="products"]:checked').forEach(cb => products.push(cb.value));
+        
+        let formData = new FormData(form);
+        formData.set('products', products.join(', '));
+
+        fetch(scriptURL, { method: 'POST', body: formData})
+            .then(response => {
+                alert('신청이 완료되었습니다. 사장마켓이 곧 연락드릴게요!');
+                location.reload();
+            })
+            .catch(error => console.error('Error!', error.message));
+    });
+</script>
+
+</body>
+</html>
