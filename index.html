@@ -7,17 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 캡처 이미지의 진한 오렌지 색상 반영 */
+            /* 캡처 이미지의 진한 오렌지 색상 */
             --main-orange: #ff6b00; 
             --light-orange: #fff8f4;
-            --bg-gray: #f2f5f8;
-            --text-dark: #333333;
+            --bg-orange: #f57c00; /* 전체 배경용 */
         }
 
-        /* 전체 배경: 깔끔한 오렌지 단색 배경 */
+        /* 전체 배경: 진한 오렌지 단색 */
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: var(--main-orange);
+            background-color: var(--bg-orange);
             margin: 0;
             display: flex;
             justify-content: center;
@@ -31,23 +30,25 @@
         .form-container {
             background: white;
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             animation: slideUp 0.5s ease-out;
+            position: relative;
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(25px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 💥 헤더 디자인: 요청하신 대로 오렌지 배경 적용 */
+        /* 💥 헤더 디자인: 오렌지색 투명도 20% 적용 */
         .header {
-            background-color: var(--main-orange);
-            padding: 45px 20px;
+            background-color: rgba(255, 107, 0, 0.2); /* #ff6b00 색상의 투명도 20% */
+            padding: 40px 20px 25px;
             text-align: center;
+            border-bottom: 2px solid rgba(255, 107, 0, 0.1); /* 미세한 구분선 추가 */
         }
         .logo {
             width: 170px;
@@ -56,26 +57,17 @@
             margin: 0 auto;
         }
         .header h1 {
-            font-size: 1.3rem;
-            color: white; /* 오렌지 배경 위에 흰색 글씨 */
+            font-size: 1.35rem;
+            color: var(--main-orange); /* 제목은 진한 주황색 유지 */
             line-height: 1.5;
             margin-top: 15px;
             margin-bottom: 0;
             word-break: keep-all;
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.15); /* 글씨 가독성 향상 */
-        }
-
-        /* 구분선 */
-        .divider {
-            height: 3px;
-            background-color: #fff; /* 오렌지 배경 위 흰색 선 */
-            width: 100%;
-            margin: 0;
         }
 
         /* 질문 단계 스타일 */
-        .step { display: none; padding: 40px 25px 50px; }
+        .step { display: none; padding: 35px 25px 50px; }
         .step.active { display: block; }
 
         .question {
@@ -83,27 +75,27 @@
             font-size: 1.25rem;
             margin-bottom: 30px;
             line-height: 1.4;
-            color: var(--text-dark);
+            color: #333333;
         }
 
         .options-grid { display: grid; gap: 14px; }
 
-        /* 라디오/체크박스 커스텀 버튼 스타일: 💥 오렌지 톤으로 변경 */
+        /* 라디오/체크박스 커스텀 버튼 스타일: 오렌지 톤 */
         input[type="radio"], input[type="checkbox"] { display: none; }
         label.option-btn {
             display: block;
-            padding: 19px;
-            border: 2px solid #e5eaef; /* 기본 테두리 */
+            padding: 20px;
+            border: 2px solid #e1e8ee; /* 기본 테두리 */
             border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 500;
-            color: var(--text-dark);
+            color: #555555;
             background: #fff;
             font-size: 1rem;
         }
-        /* 체크 시: 💥 오렌지색 적용 */
+        /* 체크 시: 오렌지색 적용 */
         input:checked + label.option-btn {
             border-color: var(--main-orange);
             background: var(--light-orange);
@@ -127,7 +119,7 @@
             border-color: var(--main-orange);
         }
 
-        /* 다음/신청 버튼 스타일: 💥 오렌지색 적용 */
+        /* 다음/신청 버튼 스타일: 오렌지색 적용 */
         .next-btn {
             width: 100%;
             background: var(--main-orange);
@@ -144,7 +136,7 @@
         }
         .next-btn:active { transform: scale(0.98); }
 
-        /* 팝업 모달 스타일: 💥 오렌지 테마 반영 */
+        /* 팝업 모달 스타일: 오렌지 테마 반영 */
         #customModal {
             display: none;
             position: fixed;
@@ -177,7 +169,7 @@
             font-size: 30px;
             font-weight: bold;
         }
-        .modal-content h2 { color: var(--text-dark); margin-bottom: 12px; font-size: 1.5rem; margin-top: 0; }
+        .modal-content h2 { color: #333333; margin-bottom: 12px; font-size: 1.5rem; margin-top: 0; }
         .modal-content p { color: #666; margin-bottom: 30px; line-height: 1.7; font-size: 1rem; }
         .modal-btn {
             background: var(--main-orange);
@@ -201,8 +193,6 @@
         <h1>매장 인터넷+전화 가입하면<br>최대 사은품 증정!</h1>
     </div>
     
-    <div class="divider"></div>
-
     <form id="sajangForm">
         <div class="step active" id="step1">
             <p class="question">Q1. 매장 오픈 예정이신가요,<br>운영중이신가요?</p>
@@ -238,7 +228,7 @@
                 <input type="radio" name="marketing" id="m2" value="미동의"><label for="m2" class="option-btn">거부</label>
             </div>
             
-            <button type="submit" class="next-btn" id="submitBtn">상담 신청하기</button>
+            <button type="submit" class="next-btn" id="submitBtn">최종 신청하기</button>
         </div>
     </form>
 </div>
@@ -253,7 +243,7 @@
 </div>
 
 <script>
-    // 본인의 앱스크립트 URL로 꼭 교체하세요.
+    // 본인의 앱스크립트 웹 앱 URL로 꼭 교체하세요.
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxIoIApIRXDzSG5EzG7c03HI6TH6bvZWdqRfiGfZrAYYLNA0LSBpu6kBExlz-JtiWrrIA/exec'; 
     const form = document.getElementById('sajangForm');
 
@@ -266,6 +256,7 @@
     form.addEventListener('submit', e => {
         e.preventDefault();
         
+        // 필수 항목 검증 (기존 로직 유지)
         const store = document.getElementById('storeName').value.trim();
         const user = document.getElementById('userName').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -275,11 +266,13 @@
             return;
         }
 
+        // 데이터 처리
         let products = [];
         document.querySelectorAll('input[name="products"]:checked').forEach(cb => products.push(cb.value));
         
         let formData = new FormData(form);
         formData.set('products', products.join(', '));
+        formData.set('callTime', '미지정'); // 기존 스프레드시트 호환용
 
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.innerText = "전송 중...";
@@ -292,7 +285,7 @@
             })
             .catch(error => {
                 alert('전송 오류가 발생했습니다.');
-                submitBtn.innerText = "상담 신청하기";
+                submitBtn.innerText = "최종 신청하기";
                 submitBtn.disabled = false;
             });
     });
