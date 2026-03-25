@@ -7,21 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-orange: #ff6b00;
-            --grad-start: #ff8e3c;
-            --grad-end: #ff6b00;
+            /* 캡처 이미지의 진한 오렌지 색상 반영 */
+            --main-orange: #ff6b00; 
+            --light-orange: #fff8f4;
+            --bg-gray: #f2f5f8;
+            --text-dark: #333333;
         }
 
-        /* 전체 배경: 보내주신 사이트와 동일한 상단 그라데이션 + 연회색 배경 */
+        /* 전체 배경: 깔끔한 오렌지 단색 배경 */
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(to bottom, var(--grad-start) 0%, var(--grad-end) 300px, #f4f7fa 300px, #f4f7fa 100%);
+            background-color: var(--main-orange);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 50px 20px;
             box-sizing: border-box;
         }
 
@@ -29,86 +31,93 @@
         .form-container {
             background: white;
             width: 100%;
-            max-width: 450px;
+            max-width: 460px;
             border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             animation: slideUp 0.5s ease-out;
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 헤더 부분 */
+        /* 💥 헤더 디자인: 요청하신 대로 오렌지 배경 적용 */
         .header {
-            padding: 40px 20px 20px;
+            background-color: var(--main-orange);
+            padding: 45px 20px;
             text-align: center;
         }
         .logo {
-            width: 160px;
-            margin-bottom: 20px;
+            width: 170px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
         .header h1 {
-            font-size: 1.35rem;
-            color: #222;
+            font-size: 1.3rem;
+            color: white; /* 오렌지 배경 위에 흰색 글씨 */
             line-height: 1.5;
-            margin: 0;
+            margin-top: 15px;
+            margin-bottom: 0;
             word-break: keep-all;
             font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15); /* 글씨 가독성 향상 */
         }
 
         /* 구분선 */
         .divider {
-            height: 4px;
-            background-color: var(--main-orange);
+            height: 3px;
+            background-color: #fff; /* 오렌지 배경 위 흰색 선 */
             width: 100%;
-            margin-bottom: 10px;
+            margin: 0;
         }
 
         /* 질문 단계 스타일 */
-        .step { display: none; padding: 30px 25px 40px; }
+        .step { display: none; padding: 40px 25px 50px; }
         .step.active { display: block; }
 
         .question {
             font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 25px;
+            font-size: 1.25rem;
+            margin-bottom: 30px;
             line-height: 1.4;
-            color: #333;
+            color: var(--text-dark);
         }
 
-        .options-grid { display: grid; gap: 12px; }
+        .options-grid { display: grid; gap: 14px; }
 
-        /* 라디오/체크박스 커스텀 버튼 */
+        /* 라디오/체크박스 커스텀 버튼 스타일: 💥 오렌지 톤으로 변경 */
         input[type="radio"], input[type="checkbox"] { display: none; }
         label.option-btn {
             display: block;
-            padding: 18px;
-            border: 1px solid #e1e8ee;
+            padding: 19px;
+            border: 2px solid #e5eaef; /* 기본 테두리 */
             border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 500;
-            color: #555;
+            color: var(--text-dark);
             background: #fff;
+            font-size: 1rem;
         }
+        /* 체크 시: 💥 오렌지색 적용 */
         input:checked + label.option-btn {
             border-color: var(--main-orange);
-            background: #fff9f5;
+            background: var(--light-orange);
             color: var(--main-orange);
             font-weight: 700;
-            box-shadow: 0 4px 10px rgba(255, 107, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.1);
         }
 
         /* 입력창 스타일 */
         input[type="text"], input[type="tel"] {
             width: 100%;
             padding: 18px;
-            margin-bottom: 12px;
-            border: 1px solid #e1e8ee;
+            margin-bottom: 14px;
+            border: 2px solid #e1e8ee;
             border-radius: 12px;
             box-sizing: border-box;
             font-size: 1rem;
@@ -118,7 +127,7 @@
             border-color: var(--main-orange);
         }
 
-        /* 다음/신청 버튼 */
+        /* 다음/신청 버튼 스타일: 💥 오렌지색 적용 */
         .next-btn {
             width: 100%;
             background: var(--main-orange);
@@ -131,28 +140,29 @@
             margin-top: 20px;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
-            transition: transform 0.1s;
+            transition: all 0.2s;
         }
         .next-btn:active { transform: scale(0.98); }
 
-        /* 팝업 스타일 */
+        /* 팝업 모달 스타일: 💥 오렌지 테마 반영 */
         #customModal {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 1000;
             justify-content: center;
             align-items: center;
         }
         .modal-content {
             background: white;
-            padding: 40px 30px;
+            padding: 45px 35px;
             border-radius: 25px;
             text-align: center;
-            width: 80%;
-            max-width: 320px;
+            width: 85%;
+            max-width: 340px;
+            animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .check-circle {
             width: 60px;
@@ -167,18 +177,20 @@
             font-size: 30px;
             font-weight: bold;
         }
-        .modal-content h2 { color: #222; margin-bottom: 10px; font-size: 1.4rem; }
-        .modal-content p { color: #666; margin-bottom: 25px; line-height: 1.6; }
+        .modal-content h2 { color: var(--text-dark); margin-bottom: 12px; font-size: 1.5rem; margin-top: 0; }
+        .modal-content p { color: #666; margin-bottom: 30px; line-height: 1.7; font-size: 1rem; }
         .modal-btn {
             background: var(--main-orange);
             color: white;
             border: none;
-            padding: 15px 0;
+            padding: 16px 0;
             border-radius: 12px;
             font-weight: 700;
             width: 100%;
             cursor: pointer;
+            font-size: 1rem;
         }
+        @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -241,7 +253,8 @@
 </div>
 
 <script>
-    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+    // 본인의 앱스크립트 URL로 꼭 교체하세요.
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxIoIApIRXDzSG5EzG7c03HI6TH6bvZWdqRfiGfZrAYYLNA0LSBpu6kBExlz-JtiWrrIA/exec'; 
     const form = document.getElementById('sajangForm');
 
     function nextStep(step) {
