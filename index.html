@@ -7,21 +7,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 사장마켓 시그니처 오렌지 컬러 반영 */
+            /* 보내주신 이미지의 활기찬 오렌지 컬러 반영 */
             --main-orange: #ff6b00; 
             --dark-gray: #333333;
             --bg-light: #fdfdfd;
             --border-color: #eee;
         }
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f5f5f5; margin: 0; display: flex; justify-content: center; padding: 20px; color: var(--dark-gray); }
-        .form-container { background: white; width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
+        
+        /* 전체 배경을 연한 오렌지/크림 톤으로 변경하여 일체감 형성 */
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #fdfaf8; margin: 0; display: flex; justify-content: center; padding: 20px; color: var(--dark-gray); }
+        .form-container { background: white; width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 10px 30px rgba(255,107,0,0.06); overflow: hidden; }
         
         /* 헤더 디자인: 오렌지 톤앤매너 */
         .header { background: #fff; border-bottom: 4px solid var(--main-orange); color: var(--dark-gray); padding: 40px 20px; text-align: center; }
         .header h1 { font-size: 1.3rem; margin-top: 18px; line-height: 1.5; word-break: keep-all; font-weight: 700; color: #111; }
+        /* 로고 이미지 (경로를 확인해 주세요) */
         .logo { width: 170px; height: auto; display: block; margin: 0 auto; }
 
-        /* 단계별 폼 스타일 */
+        /* 단계별 폼 스타일 (이전 디자인과 동일한 애니메이션) */
         .step { display: none; padding: 35px 25px; animation: fadeIn 0.4s ease-out; }
         .step.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -29,39 +32,42 @@
         .question { font-weight: 700; font-size: 1.2rem; margin-bottom: 25px; line-height: 1.4; color: var(--dark-gray); }
         .options-grid { display: grid; gap: 12px; }
         
-        /* 버튼 스타일 */
+        /* 버튼 스타일 (이전 디자인의 크고 둥근 스타일 재현) */
         input[type="radio"], input[type="checkbox"] { display: none; }
         label.option-btn {
-            display: block; padding: 18px; border: 1px solid #ddd; border-radius: 12px;
+            display: block; padding: 20px; border: 1px solid #ddd; border-radius: 12px;
             text-align: center; cursor: pointer; transition: 0.2s; font-weight: 500; background: #fff; font-size: 1rem;
         }
         /* 체크 시 사장마켓 오렌지색 적용 */
-        input:checked + label.option-btn { border-color: var(--main-orange); background: #fff9f5; color: var(--main-orange); font-weight: 700; }
+        input:checked + label.option-btn { border-color: var(--main-orange); background: #fff9f5; color: var(--main-orange); font-weight: 700; box-shadow: 0 4px 10px rgba(255, 107, 0, 0.08); }
         
+        /* 입력창 스타일 */
         input[type="text"], input[type="tel"] {
-            width: 100%; padding: 16px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; font-size: 1rem; outline: none; transition: 0.3s;
+            width: 100%; padding: 18px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; font-size: 1rem; outline: none; transition: 0.3s;
         }
         input[type="text"]:focus, input[type="tel"]:focus { border-color: var(--main-orange); }
         
         /* 메인 액션 버튼 */
         .next-btn {
-            width: 100%; background: var(--main-orange); color: white; border: none; padding: 18px;
-            border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin-top: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+            width: 100%; background: var(--main-orange); color: white; border: none; padding: 20px;
+            border-radius: 12px; font-size: 1.15rem; font-weight: 700; margin-top: 15px; cursor: pointer; box-shadow: 0 5px 15px rgba(255, 107, 0, 0.25);
         }
 
-        /* 커스텀 팝업 (오렌지 톤) */
+        /* 커스텀 팝업 (이미지 2의 스타일 재현) */
         #customModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-content {
-            background: white; padding: 40px 30px; border-radius: 20px; text-align: center;
-            width: 80%; max-width: 320px;
+            background: white; padding: 45px 30px; border-radius: 20px; text-align: center;
+            width: 80%; max-width: 340px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
+        /* 이미지 2의 주황색 체크 아이콘 재현 */
+        .check-icon { font-size: 3rem; color: #ff9f43; margin-bottom: 20px; display: block; } 
         .modal-content h2 { color: var(--main-orange); margin-top: 0; font-size: 1.5rem; margin-bottom: 10px; }
-        .modal-content p { line-height: 1.6; color: #666; font-weight: 500; margin-bottom: 25px; }
+        .modal-content p { line-height: 1.7; color: #555; font-weight: 500; margin-bottom: 30px; font-size: 1.05rem; }
         .modal-btn {
-            background: var(--main-orange); color: white; border: none; padding: 14px 0;
+            background: var(--main-orange); color: white; border: none; padding: 16px 0;
             border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem;
         }
     </style>
@@ -103,7 +109,7 @@
             <input type="text" name="userName" id="userName" placeholder="성함" required>
             <input type="tel" name="phone" id="phone" placeholder="전화번호 (-없이 입력)" required>
             
-            <p style="margin-top:25px; font-size:0.9rem; color:#666; font-weight: bold;">마케팅 활용 및 이용 동의 (선택)</p>
+            <p style="margin-top:30px; font-size:0.9rem; color:#666; font-weight: bold;">마케팅 활용 및 이용 동의 (선택)</p>
             <div class="options-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 10px;">
                 <input type="radio" name="marketing" id="m1" value="동의" checked><label for="m1" class="option-btn">동의합니다</label>
                 <input type="radio" name="marketing" id="m2" value="미동의"><label for="m2" class="option-btn">거부</label>
@@ -116,14 +122,14 @@
 
 <div id="customModal">
     <div class="modal-content">
-        <h2>사장마켓</h2>
+        <span class="check-icon">✓</span> <h2>사장마켓</h2>
         <p>문의가 접수되었습니다.<br>빠른 시일 내에 연락드리겠습니다.</p>
         <button class="modal-btn" onclick="closeModal()">확인</button>
     </div>
 </div>
 
 <script>
-    /* 배포한 웹 앱 URL을 여기에 넣으세요 */
+    /* 배포한 앱스크립트 웹 앱 URL을 여기에 넣으세요 */
     const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
     const form = document.getElementById('sajangForm');
 
@@ -136,6 +142,7 @@
     form.addEventListener('submit', e => {
         e.preventDefault();
         
+        // 필수 항목 검증 (이전 디자인의 로직 유지)
         const store = document.getElementById('storeName').value.trim();
         const user = document.getElementById('userName').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -145,18 +152,22 @@
             return;
         }
 
+        // 데이터 가공
         let products = [];
         document.querySelectorAll('input[name="products"]:checked').forEach(cb => products.push(cb.value));
         
         let formData = new FormData(form);
         formData.set('products', products.join(', '));
+        formData.set('callTime', '미지정'); // 스프레드시트 호환성용
 
+        // 전송 상태 표시
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.innerText = "전송 중...";
         submitBtn.disabled = true;
 
         fetch(scriptURL, { method: 'POST', body: formData})
             .then(response => {
+                // 신청 완료 팝업 표시
                 document.getElementById('customModal').style.display = 'flex';
                 form.reset();
             })
@@ -169,7 +180,7 @@
 
     function closeModal() {
         document.getElementById('customModal').style.display = 'none';
-        location.reload(); 
+        location.reload(); // 첫 단계로 리셋
     }
 </script>
 
