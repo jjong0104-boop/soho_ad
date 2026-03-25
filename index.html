@@ -14,51 +14,51 @@
         body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; display: flex; justify-content: center; padding: 20px; color: #333; }
         .form-container { background: white; width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; position: relative; }
         
-        /* 헤더 디자인 (보내주신 시트 느낌 반영) */
-        .header { background: linear-gradient(135deg, #1a4f94 0%, #0d2e5c 100%); color: white; padding: 40px 20px; text-align: center; }
-        .header h1 { font-size: 1.3rem; margin-top: 15px; line-height: 1.5; word-break: keep-all; font-weight: 700; }
-        .logo { width: 140px; }
+        /* 헤더 디자인: 로고 이미지 반영 및 최적화 */
+        .header { background: linear-gradient(135deg, #1a4f94 0%, #0d2e5c 100%); color: white; padding: 45px 20px; text-align: center; }
+        .header h1 { font-size: 1.35rem; margin-top: 18px; line-height: 1.5; word-break: keep-all; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .logo { width: 160px; height: auto; display: block; margin: 0 auto; } /* 로고 크기 및 중앙 정렬 */
 
         /* 단계별 폼 스타일 */
-        .step { display: none; padding: 30px 25px; animation: slideIn 0.4s ease-out; }
+        .step { display: none; padding: 35px 25px; animation: slideIn 0.4s ease-out; }
         .step.active { display: block; }
         @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
-        .question { font-weight: 700; font-size: 1.15rem; margin-bottom: 25px; line-height: 1.4; color: #1a4f94; }
-        .options-grid { display: grid; gap: 12px; }
+        .question { font-weight: 700; font-size: 1.2rem; margin-bottom: 30px; line-height: 1.4; color: #1a4f94; }
+        .options-grid { display: grid; gap: 14px; }
         
         /* 버튼 스타일 */
         input[type="radio"], input[type="checkbox"] { display: none; }
         label.option-btn {
-            display: block; padding: 18px; border: 2px solid #e0e6ed; border-radius: 12px;
-            text-align: center; cursor: pointer; transition: 0.2s; font-weight: 500; background: #fff;
+            display: block; padding: 20px; border: 2px solid #e0e6ed; border-radius: 12px;
+            text-align: center; cursor: pointer; transition: 0.2s; font-weight: 500; background: #fff; font-size: 1rem;
         }
         input:checked + label.option-btn { border-color: var(--main-blue); background: #f0f7ff; color: var(--main-blue); font-weight: 700; box-shadow: 0 4px 10px rgba(26, 79, 148, 0.1); }
         
         input[type="text"], input[type="tel"] {
-            width: 100%; padding: 16px; margin-bottom: 12px; border: 2px solid #e0e6ed; border-radius: 12px; box-sizing: border-box; font-size: 1rem; outline: none; transition: 0.3s;
+            width: 100%; padding: 18px; margin-bottom: 14px; border: 2px solid #e0e6ed; border-radius: 12px; box-sizing: border-box; font-size: 1rem; outline: none; transition: 0.3s;
         }
         input[type="text"]:focus, input[type="tel"]:focus { border-color: var(--main-blue); }
         
         .next-btn {
-            width: 100%; background: var(--accent-pink); color: white; border: none; padding: 18px;
-            border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin-top: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+            width: 100%; background: var(--accent-pink); color: white; border: none; padding: 20px;
+            border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin-top: 15px; cursor: pointer; box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
         }
 
-        /* 커스텀 팝업 스타일 */
+        /* 팝업 디자인 */
         #customModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-content {
-            background: white; padding: 40px 30px; border-radius: 20px; text-align: center;
-            width: 80%; max-width: 320px; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white; padding: 45px 35px; border-radius: 25px; text-align: center;
+            width: 85%; max-width: 340px; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .modal-content h2 { color: var(--main-blue); margin-top: 0; font-size: 1.5rem; }
-        .modal-content p { line-height: 1.6; color: #666; font-weight: 500; }
+        .modal-content h2 { color: var(--main-blue); margin-top: 0; font-size: 1.6rem; margin-bottom: 15px; }
+        .modal-content p { line-height: 1.7; color: #555; font-weight: 500; font-size: 1rem; }
         .modal-btn {
-            background: var(--main-blue); color: white; border: none; padding: 12px 30px;
-            border-radius: 10px; margin-top: 20px; font-weight: 700; cursor: pointer; width: 100%;
+            background: var(--main-blue); color: white; border: none; padding: 15px 35px;
+            border-radius: 12px; margin-top: 25px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem;
         }
         @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
@@ -67,7 +67,7 @@
 
 <div class="form-container">
     <div class="header">
-        <img src="logo.png" alt="사장마켓" class="logo">
+        <img src="image_0.png" alt="사장마켓" class="logo">
         <h1>매장 인터넷+전화 가입하면<br>최대 사은품 증정!</h1>
     </div>
 
@@ -95,28 +95,19 @@
         </div>
 
         <div class="step" id="step3">
-            <p class="question">Q3. 연락처를 남겨주시면<br>빠르게 안내드릴게요!</p>
+            <p class="question">마지막입니다!<br>연락처를 남겨주세요.</p>
             <input type="text" name="storeName" id="storeName" placeholder="상호명 (오픈예정 시 '오픈예정' 입력)" required>
             <input type="text" name="userName" id="userName" placeholder="성함" required>
             <input type="tel" name="phone" id="phone" placeholder="전화번호 (-없이 입력)" required>
-            <button type="button" class="next-btn" onclick="validateStep3()">다음으로</button>
-            <p style="font-size: 0.8rem; color: #999; margin-top: 15px; text-align: center;">* 필수 항목입니다.</p>
-        </div>
-
-        <div class="step" id="step4">
-            <p class="question">마지막입니다!<br>통화 가능 시간을 알려주세요.</p>
-            <div class="options-grid">
-                <input type="radio" name="callTime" id="t1" value="오전 09-12시" checked><label for="t1" class="option-btn">오전 09-12시</label>
-                <input type="radio" name="callTime" id="t2" value="오후 12-15시"><label for="t2" class="option-btn">오후 12-15시</label>
-                <input type="radio" name="callTime" id="t3" value="늦은 오후 15-19시"><label for="t3" class="option-btn">늦은 오후 15-19시</label>
-            </div>
             
-            <p style="margin-top:25px; font-size:0.9rem; color:#666;">마케팅 활용 동의 (선택)</p>
-            <div class="options-grid" style="grid-template-columns: 1fr 1fr;">
-                <input type="radio" name="marketing" id="m1" value="동의" checked><label for="m1" class="option-btn">동의</label>
+            <p style="margin-top:30px; font-size:0.95rem; color:#666; font-weight: bold;">마케팅 활용 및 이용 동의 (선택)</p>
+            <div class="options-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 15px;">
+                <input type="radio" name="marketing" id="m1" value="동의" checked><label for="m1" class="option-btn">동의합니다</label>
                 <input type="radio" name="marketing" id="m2" value="미동의"><label for="m2" class="option-btn">거부</label>
             </div>
-            <button type="submit" class="next-btn" style="background: var(--main-blue); margin-top: 30px;">최종 신청하기</button>
+            
+            <button type="submit" class="next-btn" id="submitBtn">최종 신청하기</button>
+            <p style="font-size: 0.85rem; color: #999; margin-top: 18px; text-align: center;">담당 상담원이 빠른 시간 내에 연락 드리겠습니다.</p>
         </div>
     </form>
 </div>
@@ -130,7 +121,7 @@
 </div>
 
 <script>
-    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; // 여기에 앱스크립트 웹 앱 URL을 넣으세요.
+    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; // 배포된 앱스크립트 웹 앱 URL 붙여넣기
     const form = document.getElementById('sajangForm');
 
     function nextStep(step) {
@@ -139,32 +130,28 @@
         window.scrollTo(0,0);
     }
 
-    // 질문 3 필수값 체크 함수
-    function validateStep3() {
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        // 필수값 검증 로직
         const store = document.getElementById('storeName').value.trim();
         const user = document.getElementById('userName').value.trim();
         const phone = document.getElementById('phone').value.trim();
 
         if(!store || !user || !phone) {
-            alert('필수 항목을 모두 입력해주세요.');
+            alert('필수 정보를 모두 입력해주세요.');
             return;
         }
-        nextStep(4);
-    }
 
-    // 최종 제출
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        
-        // 체크박스 다중 선택 처리
+        // 데이터 처리
         let products = [];
         document.querySelectorAll('input[name="products"]:checked').forEach(cb => products.push(cb.value));
         
         let formData = new FormData(form);
         formData.set('products', products.join(', '));
+        formData.set('callTime', '미지정'); // 기존 스프레드시트 호환용
 
-        // 로딩 표시 (버튼 비활성화)
-        const submitBtn = form.querySelector('button[type="submit"]');
+        const submitBtn = document.getElementById('submitBtn');
         submitBtn.innerText = "전송 중...";
         submitBtn.disabled = true;
 
@@ -174,7 +161,7 @@
                 form.reset();
             })
             .catch(error => {
-                alert('오류가 발생했습니다. 다시 시도해주세요.');
+                alert('전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
                 submitBtn.innerText = "최종 신청하기";
                 submitBtn.disabled = false;
             });
@@ -182,7 +169,7 @@
 
     function closeModal() {
         document.getElementById('customModal').style.display = 'none';
-        location.reload(); // 첫 페이지로 리셋
+        location.reload(); 
     }
 </script>
 
