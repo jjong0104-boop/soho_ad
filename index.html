@@ -7,60 +7,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-blue: #1a4f94;
-            --accent-pink: #ff4081;
-            --bg-gray: #f2f5f8;
+            /* 사장마켓 시그니처 오렌지 컬러 반영 */
+            --main-orange: #ff6b00; 
+            --dark-gray: #333333;
+            --bg-light: #fdfdfd;
+            --border-color: #eee;
         }
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: var(--bg-gray); margin: 0; display: flex; justify-content: center; padding: 20px; color: #333; }
-        .form-container { background: white; width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; position: relative; }
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f5f5f5; margin: 0; display: flex; justify-content: center; padding: 20px; color: var(--dark-gray); }
+        .form-container { background: white; width: 100%; max-width: 480px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; }
         
-        /* 헤더 디자인: 로고 이미지 반영 및 최적화 */
-        .header { background: linear-gradient(135deg, #1a4f94 0%, #0d2e5c 100%); color: white; padding: 45px 20px; text-align: center; }
-        .header h1 { font-size: 1.35rem; margin-top: 18px; line-height: 1.5; word-break: keep-all; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .logo { width: 160px; height: auto; display: block; margin: 0 auto; } /* 로고 크기 및 중앙 정렬 */
+        /* 헤더 디자인: 오렌지 톤앤매너 */
+        .header { background: #fff; border-bottom: 4px solid var(--main-orange); color: var(--dark-gray); padding: 40px 20px; text-align: center; }
+        .header h1 { font-size: 1.3rem; margin-top: 18px; line-height: 1.5; word-break: keep-all; font-weight: 700; color: #111; }
+        .logo { width: 170px; height: auto; display: block; margin: 0 auto; }
 
         /* 단계별 폼 스타일 */
-        .step { display: none; padding: 35px 25px; animation: slideIn 0.4s ease-out; }
+        .step { display: none; padding: 35px 25px; animation: fadeIn 0.4s ease-out; }
         .step.active { display: block; }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .question { font-weight: 700; font-size: 1.2rem; margin-bottom: 30px; line-height: 1.4; color: #1a4f94; }
-        .options-grid { display: grid; gap: 14px; }
+        .question { font-weight: 700; font-size: 1.2rem; margin-bottom: 25px; line-height: 1.4; color: var(--dark-gray); }
+        .options-grid { display: grid; gap: 12px; }
         
         /* 버튼 스타일 */
         input[type="radio"], input[type="checkbox"] { display: none; }
         label.option-btn {
-            display: block; padding: 20px; border: 2px solid #e0e6ed; border-radius: 12px;
+            display: block; padding: 18px; border: 1px solid #ddd; border-radius: 12px;
             text-align: center; cursor: pointer; transition: 0.2s; font-weight: 500; background: #fff; font-size: 1rem;
         }
-        input:checked + label.option-btn { border-color: var(--main-blue); background: #f0f7ff; color: var(--main-blue); font-weight: 700; box-shadow: 0 4px 10px rgba(26, 79, 148, 0.1); }
+        /* 체크 시 사장마켓 오렌지색 적용 */
+        input:checked + label.option-btn { border-color: var(--main-orange); background: #fff9f5; color: var(--main-orange); font-weight: 700; }
         
         input[type="text"], input[type="tel"] {
-            width: 100%; padding: 18px; margin-bottom: 14px; border: 2px solid #e0e6ed; border-radius: 12px; box-sizing: border-box; font-size: 1rem; outline: none; transition: 0.3s;
+            width: 100%; padding: 16px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 12px; box-sizing: border-box; font-size: 1rem; outline: none; transition: 0.3s;
         }
-        input[type="text"]:focus, input[type="tel"]:focus { border-color: var(--main-blue); }
+        input[type="text"]:focus, input[type="tel"]:focus { border-color: var(--main-orange); }
         
+        /* 메인 액션 버튼 */
         .next-btn {
-            width: 100%; background: var(--accent-pink); color: white; border: none; padding: 20px;
-            border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin-top: 15px; cursor: pointer; box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+            width: 100%; background: var(--main-orange); color: white; border: none; padding: 18px;
+            border-radius: 12px; font-size: 1.1rem; font-weight: 700; margin-top: 15px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
         }
 
-        /* 팝업 디자인 */
+        /* 커스텀 팝업 (오렌지 톤) */
         #customModal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); z-index: 1000; justify-content: center; align-items: center;
+            background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center;
         }
         .modal-content {
-            background: white; padding: 45px 35px; border-radius: 25px; text-align: center;
-            width: 85%; max-width: 340px; animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: white; padding: 40px 30px; border-radius: 20px; text-align: center;
+            width: 80%; max-width: 320px;
         }
-        .modal-content h2 { color: var(--main-blue); margin-top: 0; font-size: 1.6rem; margin-bottom: 15px; }
-        .modal-content p { line-height: 1.7; color: #555; font-weight: 500; font-size: 1rem; }
+        .modal-content h2 { color: var(--main-orange); margin-top: 0; font-size: 1.5rem; margin-bottom: 10px; }
+        .modal-content p { line-height: 1.6; color: #666; font-weight: 500; margin-bottom: 25px; }
         .modal-btn {
-            background: var(--main-blue); color: white; border: none; padding: 15px 35px;
-            border-radius: 12px; margin-top: 25px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem;
+            background: var(--main-orange); color: white; border: none; padding: 14px 0;
+            border-radius: 10px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem;
         }
-        @keyframes popUp { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -100,14 +103,13 @@
             <input type="text" name="userName" id="userName" placeholder="성함" required>
             <input type="tel" name="phone" id="phone" placeholder="전화번호 (-없이 입력)" required>
             
-            <p style="margin-top:30px; font-size:0.95rem; color:#666; font-weight: bold;">마케팅 활용 및 이용 동의 (선택)</p>
-            <div class="options-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 15px;">
+            <p style="margin-top:25px; font-size:0.9rem; color:#666; font-weight: bold;">마케팅 활용 및 이용 동의 (선택)</p>
+            <div class="options-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 10px;">
                 <input type="radio" name="marketing" id="m1" value="동의" checked><label for="m1" class="option-btn">동의합니다</label>
                 <input type="radio" name="marketing" id="m2" value="미동의"><label for="m2" class="option-btn">거부</label>
             </div>
             
             <button type="submit" class="next-btn" id="submitBtn">최종 신청하기</button>
-            <p style="font-size: 0.85rem; color: #999; margin-top: 18px; text-align: center;">담당 상담원이 빠른 시간 내에 연락 드리겠습니다.</p>
         </div>
     </form>
 </div>
@@ -121,7 +123,8 @@
 </div>
 
 <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxIoIApIRXDzSG5EzG7c03HI6TH6bvZWdqRfiGfZrAYYLNA0LSBpu6kBExlz-JtiWrrIA/exec'; // 배포된 앱스크립트 웹 앱 URL 붙여넣기
+    /* 배포한 웹 앱 URL을 여기에 넣으세요 */
+    const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE'; 
     const form = document.getElementById('sajangForm');
 
     function nextStep(step) {
@@ -133,7 +136,6 @@
     form.addEventListener('submit', e => {
         e.preventDefault();
         
-        // 필수값 검증 로직
         const store = document.getElementById('storeName').value.trim();
         const user = document.getElementById('userName').value.trim();
         const phone = document.getElementById('phone').value.trim();
@@ -143,13 +145,11 @@
             return;
         }
 
-        // 데이터 처리
         let products = [];
         document.querySelectorAll('input[name="products"]:checked').forEach(cb => products.push(cb.value));
         
         let formData = new FormData(form);
         formData.set('products', products.join(', '));
-        formData.set('callTime', '미지정'); // 기존 스프레드시트 호환용
 
         const submitBtn = document.getElementById('submitBtn');
         submitBtn.innerText = "전송 중...";
